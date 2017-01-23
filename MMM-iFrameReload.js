@@ -1,14 +1,14 @@
 /* global Module */
 
 /* Magic Mirror
- * Module: iFrameReload
+ * Module: MMM-iFrameReload
  *
- * Original MMM-iFrame module By Ben Williams http://desertblade.com
+ * Original iFrame module By Ben Williams http://desertblade.com
  * Auto-reload added by Jody J Roth https://github/TheBogueRat
  * MIT Licensed.
  */
 
-Module.register("iFrameReload",{
+Module.register("MMM-iFrameReload",{
 	// Default module config.
 	defaults: {
 		url: "",
