@@ -51,8 +51,7 @@ Module.register("MMM-iFrameReload",{
 		this.src = this.config.url;
 		Log.info("attempting to update dom for iFrameReload");
 		Log.info('/"this/" module is: ' + this);
-		this.contentWindow.location.reload();
-		//this.updateDom(this.config.animationSpeed);
+		this.updateDom(this.config.animationSpeed);
 		this.scheduleUpdate(this.config.refreshInterval);
 	}
 });
