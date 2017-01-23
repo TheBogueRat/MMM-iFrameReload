@@ -17,6 +17,13 @@ Module.register("iFrameReload",{
 		refreshInterval: 3600,
 		animationSpeed: 1000
 	},
+
+	// Define start sequence.
+	start: function() {
+		Log.info("Starting module: " + this.name);
+
+		this.scheduleUpdate(this.config.refreshInterval);
+	},
 	// Override dom generator.
 	getDom: function() {
 		var iframe = document.createElement("IFRAME");
@@ -26,17 +33,17 @@ Module.register("iFrameReload",{
 		iframe.src =  this.config.url;
 		return iframe;
 	},
-	scheduleUpdate: function(delay) {
+	scheduleUpdate2: function(delay) {
 		var nextLoad = this.config.refreshInterval;
 		if (typeof delay !== "undefined" && delay >= 0) {
 			nextLoad = delay * 1000;
 		}
 		var self = this;
 		setTimeout(function() {
-			self.updateFrame();
+			self.updateFrame2();
 		}, nextLoad);
 	},
-	updateFrame: function() {
+	updateFrame2: function() {
 		if (this.config.url === "") {
 			Log.error("Tried to refresh, iFrameReload URL not set!");
 			return;
