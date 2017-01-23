@@ -21,7 +21,6 @@ Module.register("MMM-iFrameReload",{
 	// Define start sequence.
 	start: function() {
 		Log.info("Starting module: " + this.name);
-
 		this.scheduleUpdate(this.config.refreshInterval);
 	},
 	// Override dom generator.
@@ -33,17 +32,17 @@ Module.register("MMM-iFrameReload",{
 		iframe.src =  this.config.url;
 		return iframe;
 	},
-	scheduleUpdate2: function(delay) {
+	scheduleUpdate: function(delay) {
 		var nextLoad = this.config.refreshInterval;
 		if (typeof delay !== "undefined" && delay >= 0) {
-			nextLoad = delay * 1000;
+			nextLoad = delay * 1000; // Convert seconds to millis
 		}
 		var self = this;
 		setTimeout(function() {
-			self.updateFrame2();
+			self.updateFrame();
 		}, nextLoad);
 	},
-	updateFrame2: function() {
+	updateFrame: function() {
 		if (this.config.url === "") {
 			Log.error("Tried to refresh, iFrameReload URL not set!");
 			return;
