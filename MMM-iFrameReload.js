@@ -43,6 +43,7 @@ Module.register("iFrameReload",{
 		}
 		// Change url to force refresh?
 		this.src = this.config.url;
+		Log.info("attempting to update dom for iFrameReload");
 		this.updateDom(this.config.animationSpeed);
 	}
 });
