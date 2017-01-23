@@ -21,7 +21,7 @@ modules: [
 				url: "http://YOUR.TARGET.URL",
 				width: "100%", // Optional. Default: 400px
 				height: "300px", // Optional. Default: 800px
-        refreshInterval: 3600  //Optional. Default: 3600 = 1 hour
+        			refreshInterval: 3600  //Optional. Default: 3600 = 1 hour
 			}
 		}
 	}
