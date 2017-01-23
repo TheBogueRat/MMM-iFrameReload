@@ -3,7 +3,7 @@
 /* Magic Mirror
  * Module: iFrameReload
  *
- * Original iFrame module By Ben Williams http://desertblade.com
+ * Original MMM-iFrame module By Ben Williams http://desertblade.com
  * Auto-reload added by Jody J Roth https://github/TheBogueRat
  * MIT Licensed.
  */
@@ -29,7 +29,7 @@ Module.register("iFrameReload",{
 	scheduleUpdate: function(delay) {
 		var nextLoad = this.config.refreshInterval;
 		if (typeof delay !== "undefined" && delay >= 0) {
-			nextLoad = delay;
+			nextLoad = delay * 1000;
 		}
 		var self = this;
 		setTimeout(function() {
@@ -43,6 +43,6 @@ Module.register("iFrameReload",{
 		}
 		// Change url to force refresh?
 		this.src = this.config.url;
-		this.updateDOM(this.config.animationSpeed);
+		this.updateDom(this.config.animationSpeed);
 	}
 });
