@@ -9,14 +9,14 @@
  */
 
 Module.register("iFrameReload",{
-		// Default module config.
-		defaults: {
-				height:"300px",
-				width:"100%",
-        refreshInterval: 3600
-		},
-
-
+	// Default module config.
+	defaults: {
+		url: "",
+		height:"800px",
+		width:"400%",
+		refreshInterval: 3600,
+		animationSpeed: 1000
+	},
 	// Override dom generator.
 	getDom: function() {
 		var iframe = document.createElement("IFRAME");
@@ -25,6 +25,24 @@ Module.register("iFrameReload",{
 		iframe.height = this.config.height;
 		iframe.src =  this.config.url;
 		return iframe;
+	},
+	scheduleUpdate: function(delay) {
+		var nextLoad = this.config.refreshInterval;
+		if (typeof delay !== "undefined" && delay >= 0) {
+			nextLoad = delay;
+		}
+		var self = this;
+		setTimeout(function() {
+			self.updateFrame();
+		}, nextLoad);
+	},
+	updateFrame: function() {
+		if (this.config.url === "") {
+			Log.error("Tried to refresh, iFrameReload URL not set!");
+			return;
+		}
+		// Change url to force refresh?
+		this.src = this.config.url;
+		this.updateDOM(this.config.animationSpeed);
 	}
-
 });
