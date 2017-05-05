@@ -17,12 +17,25 @@ Module.register("MMM-iFrameReload",{
 		refreshInterval: 3600,
 		animationSpeed: 1000
 	},
+	myUpdateInterval: null, 
 
 	// Define start sequence.
 	start: function() {
 		Log.info("Starting module: " + this.name);
-		this.scheduleUpdate(this.config.refreshInterval);
+		this.scheduleUpdate();
 	},
+	
+	suspend : function() {
+	  Log.info("Suspending module: " + this.name);
+	  this.cancelUpdate();
+	},
+	
+	resume : function() {
+	  Log.info("Resuming module: " + this.name);
+	  this.updateFrame();
+	  this.scheduleUpdate();
+	},
+	
 	// Override dom generator.
 	getDom: function() {
 		var iframe = document.createElement("IFRAME");
@@ -32,16 +45,19 @@ Module.register("MMM-iFrameReload",{
 		iframe.src =  this.config.url;
 		return iframe;
 	},
-	scheduleUpdate: function(delay) {
-		var nextLoad = this.config.refreshInterval;
-		if (typeof delay !== "undefined" && delay >= 0) {
-			nextLoad = delay * 1000; // Convert seconds to millis
-		}
+	
+	scheduleUpdate: function() {
+		var interval = this.config.refreshInterval * 1000; // Convert seconds to millis
 		var self = this;
-		setTimeout(function() {
+		this.myUpdateInterval = setInterval(function() {
 			self.updateFrame();
-		}, nextLoad);
+		}, interval);
 	},
+	
+	cancelUpdate: function() {
+		clearInterval(this.myUpdateInterval);
+	},
+	
 	updateFrame: function() {
 		if (this.config.url === "") {
 			Log.error("Tried to refresh, iFrameReload URL not set!");
@@ -52,6 +68,5 @@ Module.register("MMM-iFrameReload",{
 		Log.info("attempting to update dom for iFrameReload");
 		Log.info('/"this/" module is: ' + this);
 		this.updateDom(this.config.animationSpeed);
-		this.scheduleUpdate(this.config.refreshInterval);
 	}
 });
