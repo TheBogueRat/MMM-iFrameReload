@@ -14,13 +14,13 @@ To use this module, add it to the modules array in the `config/config.js` file:
 ``` javascript
 modules: [
 	{
-		module: 'iFrameReload',
+		module: 'MMM-iFrameReload',
 		position: 'bottom_bar',	// This can be any of the regions.
 		config: {
 			// See 'Configuration options' for more information.
-				url: "http://YOUR.TARGET.URL",
-				width: "100%", // Optional. Default: 400px
-				height: "300px", // Optional. Default: 800px
+				url: 'http://YOUR.TARGET.URL',
+				width: '100%', // Optional. Default: 400px
+				height: '300px', // Optional. Default: 800px
         			refreshInterval: 3600  //Optional. Default: 3600 = 1 hour
 			}
 		}
