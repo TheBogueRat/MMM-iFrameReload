@@ -29,7 +29,8 @@ Module.register("MMM-iFrameReload",{
 		iframe.style = "border:0"
 		iframe.width = this.config.width;
 		iframe.height = this.config.height;
-		iframe.src =  this.config.url;
+		iframe.setAttribute("timestamp", new Date().getTime());
+                iframe.src = this.config.url + new Date().getTime();
 		return iframe;
 	},
 	scheduleUpdate: function(delay) {
